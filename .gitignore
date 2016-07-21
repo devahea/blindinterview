@@ -1,0 +1,10 @@
+/Servers/
+/.metadata
+.metadata
+.project
+
+.metadata/.log
+
+*.snap
+
+*.index
