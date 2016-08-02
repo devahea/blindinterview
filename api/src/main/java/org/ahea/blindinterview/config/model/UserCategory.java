@@ -1,7 +1,7 @@
 package org.ahea.blindinterview.config.model;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -37,6 +37,6 @@ public class UserCategory {
   @JoinColumn(name = "user_no", insertable = false, updatable = false)
   private User user;
 
-  @OneToMany(mappedBy = "userCategory", fetch = FetchType.LAZY)
-  private List<CategorySharp> categorySharp = new ArrayList<>();
+//  @OneToMany(mappedBy = "userCategory", fetch = FetchType.LAZY)
+//  private Set<CategorySharp> categorySharp = new HashSet<CategorySharp>();
 }
