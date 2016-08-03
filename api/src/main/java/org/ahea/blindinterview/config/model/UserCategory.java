@@ -38,5 +38,9 @@ public class UserCategory {
   private User user;
 
 //  @OneToMany(mappedBy = "userCategory", fetch = FetchType.LAZY)
+<<<<<<< Updated upstream
 //  private Set<CategorySharp> categorySharp = new HashSet<CategorySharp>();
+=======
+//  private List<CategorySharp> categorySharp = new ArrayList<>();
+>>>>>>> Stashed changes
 }

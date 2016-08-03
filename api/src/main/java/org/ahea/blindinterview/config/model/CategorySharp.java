@@ -21,7 +21,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class CategorySharp {
   @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
+//  @GeneratedValue(strategy = GenerationType.AUTO)
   @Column(name = "sharp_id", length = ColumnSize.ID)
   private String id;
 
@@ -31,7 +31,7 @@ public class CategorySharp {
   @Column(name = "keyword", length = ColumnSize.KEYWORD)
   private String keyword;
 
-  @ManyToOne
-  @JoinColumn(name = "category_group_id", insertable = false, updatable = false)
-  private CategoryGroup categoryGroup;
+//  @ManyToOne
+//  @JoinColumn(name = "category_group_id", insertable = false, updatable = false)
+//  private CategoryGroup categoryGroup;
 }

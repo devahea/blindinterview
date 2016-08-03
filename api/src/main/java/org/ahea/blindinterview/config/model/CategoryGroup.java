@@ -13,8 +13,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 
-@Entity
-@Table
+//@Entity
+//@Table
 @Data
 @NoArgsConstructor
 public class CategoryGroup {

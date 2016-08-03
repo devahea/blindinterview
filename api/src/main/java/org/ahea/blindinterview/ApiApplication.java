@@ -107,7 +107,7 @@ public class ApiApplication {
 
         @Override
         protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-            auth.inMemoryAuthentication().withUser("aHeaUser").password("aHeaPwd").roles("USER");
+            auth.inMemoryAuthentication().withUser("min").password("min").roles("USER");
         }
 
         @Bean
