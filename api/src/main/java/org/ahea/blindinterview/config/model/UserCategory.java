@@ -15,32 +15,28 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.ahea.blindinterview.config.ColumnSize;
+import org.hibernate.annotations.GenericGenerator;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 
 @Entity
 @Table
 @Data
 @NoArgsConstructor
 public class UserCategory {
-  @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
-  @Column(name = "user_category_id", length = ColumnSize.ID)
-  private String id;
 
-  @Column(name = "category_group_id", length = ColumnSize.ID)
-  private String categoryGroupId;
+    @Id
+    @GeneratedValue(generator = "system-uuid")
+    @GenericGenerator(name = "system-uuid", strategy = "uuid")
+    @Column(name = "user_category_id", length = ColumnSize.ID)
+    private String id;
 
-  @ManyToOne
-  @JoinColumn(name = "user_no", insertable = false, updatable = false)
-  private User user;
+    @Column(name = "category_group_id", length = ColumnSize.ID)
+    private String categoryGroupId;
 
-//  @OneToMany(mappedBy = "userCategory", fetch = FetchType.LAZY)
-<<<<<<< Updated upstream
-//  private Set<CategorySharp> categorySharp = new HashSet<CategorySharp>();
-=======
-//  private List<CategorySharp> categorySharp = new ArrayList<>();
->>>>>>> Stashed changes
+    @ManyToOne
+    @JoinColumn(name = "user_no", insertable = false, updatable = false)
+    private User user;
+
 }

@@ -7,24 +7,27 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.GenericGenerator;
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 
 @Entity
 @Table
 @Data
 @NoArgsConstructor
 public class Summery {
-  @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
-  @Column(name = "user_no")
-  private String id;
 
-  @Column(name = "summery_no")
-  private String summery_no;
+    @Id
+    @GeneratedValue(generator = "system-uuid")
+    @GenericGenerator(name = "system-uuid", strategy = "uuid")
+    @Column(name = "user_no")
+    private String id;
 
-  @Column(name = "title")
-  private String title;
+    @Column(name = "summery_no")
+    private String summery_no;
+
+    @Column(name = "title")
+    private String title;
 
 }

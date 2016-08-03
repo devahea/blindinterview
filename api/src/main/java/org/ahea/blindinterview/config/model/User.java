@@ -13,29 +13,32 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.GenericGenerator;
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 
 @Entity
 @Table
 @Data
 @NoArgsConstructor
 public class User {
-  @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
-  @Column(name = "user_no")
-  private String id;
 
-  @Column(name = "user_name")
-  private String userName;
+    @Id
+    @GeneratedValue(generator = "system-uuid")
+    @GenericGenerator(name = "system-uuid", strategy = "uuid")
+    @Column(name = "user_no")
+    private String id;
 
-  @Column(name = "user_token")
-  private String userToken;
+    @Column(name = "user_name")
+    private String userName;
 
-  @Column(name = "write_data")
-  private Date writeData;
+    @Column(name = "user_token")
+    private String userToken;
 
-  @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
-  private List<UserCategory> userCategory = new ArrayList<>();
+    @Column(name = "write_data")
+    private Date writeData;
+
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+    private List<UserCategory> userCategory = new ArrayList<>();
 }
