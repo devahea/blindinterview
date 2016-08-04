@@ -6,7 +6,6 @@
 	<groupId>org.ahea</groupId>
 	<artifactId>ahea</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>jar</packaging>
 
 	<name>api</name>
 	<description>project ahea</description>
@@ -16,6 +15,7 @@
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>1.3.6.RELEASE</version>
 		<relativePath />
+		
 	</parent>
 
 	<properties>
@@ -23,6 +23,7 @@
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<querydsl.version>3.7.3</querydsl.version>
 		<java.version>1.8</java.version>
+		<maven.test.skip>true</maven.test.skip>
 	</properties>
 
 	<dependencies>
@@ -85,7 +86,16 @@
 			<artifactId>mysql-connector-java</artifactId>
 			<version>5.1.31</version>
 		</dependency>
-
+		<dependency>
+			<groupId>org.apache.tomcat.embed</groupId>
+			<artifactId>tomcat-embed-jasper</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-tomcat</artifactId>
+			<scope>provided</scope>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -98,4 +108,5 @@
 	</build>
 
 
+	<packaging>war</packaging>
 </project>
