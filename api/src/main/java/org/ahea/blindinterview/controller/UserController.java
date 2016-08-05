@@ -1,20 +1,19 @@
 package org.ahea.blindinterview.controller;
 
-import io.swagger.annotations.ApiImplicitParam;
-import io.swagger.annotations.ApiImplicitParams;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
-
-import javax.ws.rs.core.MediaType;
-
 import org.ahea.blindinterview.model.user.User;
 import org.ahea.blindinterview.model.user.UserRepository;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 
 
 @RestController
@@ -46,7 +45,9 @@ public class UserController {
         @ApiImplicitParam(name = "Authorization", value = "authorization header", required = true,
                 dataType = "string", paramType = "header", defaultValue = "bearer cbbb1a6e-8614-4a4d-a967-b0a42924e7ca")
 	})
-	@RequestMapping(method=RequestMethod.POST, value="join", produces={MediaType.APPLICATION_FORM_URLENCODED})
+	@RequestMapping(method=RequestMethod.POST, value="join"
+//	, produces={MediaType.APPLICATION_FORM_URLENCODED}
+	)
 //	@Produces(MediaType.APPLICATION_FORM_URLENCODED)
 	public void join(@ApiParam(value = "email") String email, @ApiParam(value = "이름")String name, @ApiParam(value = "패스워드")String password) {
 

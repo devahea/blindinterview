@@ -1,4 +1,4 @@
-package org.ahea.blindinterview.config.model;
+package org.ahea.blindinterview.model.questrequest;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,27 +9,31 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.ahea.blindinterview.model.corpuser.CorpUser;
+import org.ahea.blindinterview.model.user.User;
+import org.hibernate.annotations.GenericGenerator;
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import org.ahea.blindinterview.config.ColumnSize;
 
 
 @Entity
 @Table
 @Data
 @NoArgsConstructor
-public class UserCategory {
+public class QuestRequest {
   @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
-  @Column(name = "user_category_id", length = ColumnSize.ID)
+  @GeneratedValue(generator = "system-uuid")
+  @GenericGenerator(name = "system-uuid", strategy = "uuid")
+  @Column(name = "questRequest_id")
   private String id;
-
-  @Column(name = "category_group_id", length = ColumnSize.ID)
-  private String categoryGroupId;
 
   @ManyToOne
   @JoinColumn(name = "user_no", insertable = false, updatable = false)
   private User user;
+  
+  @ManyToOne
+  @JoinColumn(name = "corp_user_id", insertable = false, updatable = false)
+  private CorpUser corpUser;
 
 }

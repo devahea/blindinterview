@@ -1,11 +1,16 @@
-package org.ahea.blindinterview.config.model;
+package org.ahea.blindinterview.model.advertise;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import org.ahea.blindinterview.model.user.User;
+import org.hibernate.annotations.GenericGenerator;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -15,10 +20,11 @@ import lombok.NoArgsConstructor;
 @Table
 @Data
 @NoArgsConstructor
-public class SummeryAnswer {
+public class AdvertiseFile {
   @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
-  @Column(name = "summery_answer_no")
+  @GeneratedValue(generator = "system-uuid")
+  @GenericGenerator(name = "system-uuid", strategy = "uuid")
+  @Column(name = "advertise_file_no")
   private String id;
 
   @Column(name = "user_no")
@@ -30,4 +36,7 @@ public class SummeryAnswer {
   @Column(name = "answer")
   private String answer;
 
+  @ManyToOne
+  @JoinColumn(name = "user_no", insertable = false, updatable = false)
+  private User user;
 }

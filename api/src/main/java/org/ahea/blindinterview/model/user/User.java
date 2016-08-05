@@ -1,58 +1,64 @@
 package org.ahea.blindinterview.model.user;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.ahea.blindinterview.model.offer.Offer;
+import org.ahea.blindinterview.model.resume.Resume;
+import org.hibernate.annotations.GenericGenerator;
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import org.hibernate.annotations.GenericGenerator;
 
 @Entity
 @Table
 @Data
+@NoArgsConstructor
 public class User {
 
-	public User(){}
-	
-	
-	
-	public User(String email, String password, String name) {
-		super();
-		this.email = email;
-		this.password = password;
-		this.name = name;
-	}
+  @Id
+  @GeneratedValue(generator = "system-uuid")
+  @GenericGenerator(name = "system-uuid", strategy = "uuid")
+  @Column(name = "user_no")
+  private String userNo;
 
+  @Column(name = "email")
+  private String email;
 
+  @Column(name = "password")
+  private String password;
 
-	@Id
-	@GeneratedValue(generator = "system-uuid")
-	@GenericGenerator(name = "system-uuid", strategy = "uuid")
-	@Column(name = "user_no")
-	private String userNo;
-	
-	@Column(name = "email")
-	private String email;
-	
-	@Column(name = "password")
-	private String password;
-	
-	@Column(name = "name")
-	private String name;
-	
-	@Column(name = "profile_path")
-	private String profileImage;
-	
-	@Column(name = "write_date")
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date writeDate;
+  @Column(name = "name")
+  private String name;
 
+  @Column(name = "profile_path")
+  private String profileImage;
+
+  @Column(name = "write_date")
+  @Temporal(TemporalType.TIMESTAMP)
+  private Date writeDate;
+
+  @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+  private List<Resume> resume = new ArrayList<>();
+  
+  @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+  private List<Offer> offer = new ArrayList<>();
+  
+  public User(String email, String password, String name) {
+    super();
+    this.email = email;
+    this.password = password;
+    this.name = name;
+  }
 }
