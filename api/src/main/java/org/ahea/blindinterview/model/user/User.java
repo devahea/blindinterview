@@ -14,6 +14,7 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.ahea.blindinterview.config.ColumnSize;
 import org.ahea.blindinterview.model.offer.Offer;
 import org.ahea.blindinterview.model.resume.Resume;
 import org.hibernate.annotations.GenericGenerator;
@@ -30,10 +31,10 @@ public class User {
   @Id
   @GeneratedValue(generator = "system-uuid")
   @GenericGenerator(name = "system-uuid", strategy = "uuid")
-  @Column(name = "user_no")
+  @Column(name = "user_no", length = ColumnSize.ID)
   private String userNo;
 
-  @Column(name = "email")
+  @Column(name = "email", length = ColumnSize.EMAIL)
   private String email;
 
   @Column(name = "password")

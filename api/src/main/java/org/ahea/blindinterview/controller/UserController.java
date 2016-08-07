@@ -18,44 +18,34 @@ import io.swagger.annotations.ApiParam;
 
 @RestController
 @RequestMapping("/user")
-@CrossOrigin(origins="*")
+@CrossOrigin(origins = "*")
 public class UserController {
 
-	private static final Logger logger = Logger.getLogger(UserController.class);
-	
-	@Autowired
-	UserRepository userRepository;
-	
-	
-	@ApiOperation(value = "로그인", httpMethod = "POST", notes = "로그인")
-	@ApiImplicitParams({
-        @ApiImplicitParam(name = "Authorization", value = "authorization header", required = true,
-                dataType = "string", paramType = "header", defaultValue = "bearer cbbb1a6e-8614-4a4d-a967-b0a42924e7ca")
-	})
-	@RequestMapping(method=RequestMethod.POST, value="login")
-	public User login(@ApiParam(value = "email", required = true)String email, @ApiParam(value = "password", required = true)String password) throws Exception {
-		
-		return userRepository.findByEmailAndPassword(email, password);
-		
-	}
-	
-	
-	@ApiOperation(value = "회원가입", httpMethod = "POST", notes ="회원가입")
-	@ApiImplicitParams({
-        @ApiImplicitParam(name = "Authorization", value = "authorization header", required = true,
-                dataType = "string", paramType = "header", defaultValue = "bearer cbbb1a6e-8614-4a4d-a967-b0a42924e7ca")
-	})
-	@RequestMapping(method=RequestMethod.POST, value="join"
-//	, produces={MediaType.APPLICATION_FORM_URLENCODED}
-	)
-//	@Produces(MediaType.APPLICATION_FORM_URLENCODED)
-	public void join(@ApiParam(value = "email") String email, @ApiParam(value = "이름")String name, @ApiParam(value = "패스워드")String password) {
+  private static final Logger logger = Logger.getLogger(UserController.class);
 
-		logger.info("email " + email);
-		
-		userRepository.save(new User(email,name,password));
-		
-	}
-	
-	
+  @Autowired
+  UserRepository userRepository;
+
+
+
+  @RequestMapping(method = RequestMethod.POST, value = "login")
+  public User login(@ApiParam(value = "email", required = true) String email,
+      @ApiParam(value = "password", required = true) String password) throws Exception {
+
+    return userRepository.findByEmailAndPassword(email, password);
+
+  }
+
+
+  @RequestMapping(method = RequestMethod.POST, value = "join")
+  public void join(@ApiParam(value = "email") String email, @ApiParam(value = "이름") String name,
+      @ApiParam(value = "패스워드") String password) {
+
+    logger.info("email " + email);
+
+    userRepository.save(new User(email, name, password));
+
+  }
+
+
 }

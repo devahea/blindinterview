@@ -26,8 +26,4 @@ public class ResumeFile {
   @Column(name = "resume_file_id")
   private String id;
 
-  @ManyToOne
-  @JoinColumn(name = "resume_id", insertable = false, updatable = false)
-  private Resume resume;
-  
 }
