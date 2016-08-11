@@ -37,13 +37,13 @@ public class User {
   @Column(name = "email", length = ColumnSize.EMAIL)
   private String email;
 
-  @Column(name = "password")
+  @Column(name = "password", length = ColumnSize.KEYWORD)
   private String password;
 
-  @Column(name = "name")
+  @Column(name = "name", length = ColumnSize.NAME)
   private String name;
 
-  @Column(name = "profile_path")
+  @Column(name = "profile_path", length = ColumnSize.PROFILE_PATH)
   private String profileImage;
 
   @Column(name = "write_date")
