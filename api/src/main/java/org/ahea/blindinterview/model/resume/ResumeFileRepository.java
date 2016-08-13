@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ResumeFileRepository extends CrudRepository<ResumeFile, String>{
-
+ 
 }

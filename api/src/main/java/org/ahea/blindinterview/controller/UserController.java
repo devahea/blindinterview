@@ -20,7 +20,7 @@ import io.swagger.annotations.ApiParam;
 @RequestMapping("/user")
 @CrossOrigin(origins = "*")
 public class UserController {
-
+ 
   private static final Logger logger = Logger.getLogger(UserController.class);
 
   @Autowired

@@ -2,7 +2,7 @@ package org.ahea.blindinterview.config;
 
 
 public class ColumnSize {
-
+ 
 	
 	//User
   public static final int ID = 20;
@@ -15,8 +15,7 @@ public class ColumnSize {
 
   public static final int PROFILE_PATH = 45;
   
-  //public static final int PASSWORD = 45; // 경운이형한테 물어볼것.
-  
+     
   
   //Resume
   

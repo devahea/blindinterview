@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/resumeFile")
 public class ResumeFileController {
-
+ 
 	private static final Logger logger = Logger.getLogger(ResumeFileController.class);
 
 	@Autowired

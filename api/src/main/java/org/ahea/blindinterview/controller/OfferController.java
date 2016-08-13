@@ -20,7 +20,7 @@ public class OfferController {
 
   private static final Logger logger = Logger.getLogger(OfferController.class);
 
-  @Autowired
+  @Autowired 
   OfferRepository offerRepository;
 
   @RequestMapping(value = "/{offerId}",method = RequestMethod.GET)//1.매핑될 URL규칙을 적어주고 또는  @PathVariable어노테이션과 매핑될거를 작성해준다(예:{offerId}), 리퀘스트 형식을 적어준다 RequestMethod.GET, RequestMethod.POST 등이 있다.

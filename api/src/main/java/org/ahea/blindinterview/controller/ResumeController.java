@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class ResumeController {
 
 	private static final Logger logger = Logger.getLogger(ResumeController.class);
-
+ 
 	@Autowired
 	  ResumeRepository resumeRepository;
 

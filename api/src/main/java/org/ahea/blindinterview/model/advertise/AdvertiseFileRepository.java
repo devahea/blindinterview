@@ -5,5 +5,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface AdvertiseFileRepository extends CrudRepository<AdvertiseFile, String>{
- 
+  
 }
