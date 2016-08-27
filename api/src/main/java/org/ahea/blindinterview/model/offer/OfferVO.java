@@ -11,4 +11,22 @@ public class OfferVO {
 	
 	private String offerStatus;
 
+	public String getOfferId() {
+		return offerId;
+	}
+
+	public void setOfferId(String offerId) {
+		this.offerId = offerId;
+	}
+
+	public String getOfferStatus() {
+		return offerStatus;
+	}
+
+	public void setOfferStatus(String offerStatus) {
+		this.offerStatus = offerStatus;
+	}
+
+	
+	
 }

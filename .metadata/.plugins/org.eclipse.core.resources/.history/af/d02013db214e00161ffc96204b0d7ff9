@@ -1,5 +1,0 @@
-package org.ahea.blindinterview.config.security;
-
-public class HttpAuthenticationEntryPoint {
-
-}

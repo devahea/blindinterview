@@ -5,7 +5,7 @@ public class ColumnSize {
  
 	
 	//User
-  public static final int ID = 20;
+  public static final int ID = 40;
 
   public static final int KEYWORD = 45; //????? 패스워드인가?
 

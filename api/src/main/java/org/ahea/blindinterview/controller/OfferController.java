@@ -35,13 +35,13 @@ public class OfferController {
 		return ResponseVO.ok();
 	}
 
-	@RequestMapping(value = "/update", method = RequestMethod.POST)
-	public ResponseVO update(OfferVO offerVO, Model model) {
-		Offer offer = offerRepository.findOne(offerVO.getOfferId()); //1
-		offer.setOfferStatus(offerVO.getOfferStatus());				 //2
-		offerRepository.save(offer);								 //3
-		return ResponseVO.ok();
-	}
+//	@RequestMapping(value = "/update", method = RequestMethod.POST)
+//	public ResponseVO update(OfferVO offerVO, Model model) {
+//		Offer offer = offerRepository.findOne(offerVO.getOfferId()); //1
+//		offer.setOfferStatus(offerVO.getOfferStatus());				 //2
+//		offerRepository.save(offer);								 //3
+//		return ResponseVO.ok();
+//	}
 
 	@RequestMapping(value = "/{offerId}", method = RequestMethod.DELETE)
 	@ResponseBody

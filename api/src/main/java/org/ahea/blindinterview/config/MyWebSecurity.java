@@ -1,15 +1,23 @@
-//package org.ahea.blindinterview.config;
-//
-//import org.springframework.context.annotation.Configuration;
-//import org.springframework.http.HttpMethod;
-//
+
+package org.ahea.blindinterview.config;
+
+
+@Deprecated
 //@Configuration
-//public class MyWebSecurity extends WebSecurityConfigurerAdapter {
+//@EnableWebMvc
+public class MyWebSecurity 
+//extends WebSecurityConfigurerAdapter
+{
 //
 //	@Override
 //	protected void configure(HttpSecurity http) throws Exception {
-//		http.authorizeRequests()
-//				.antMatchers(HttpMethod.OPTIONS, "/oauth/token").permitAll();
+//		
+//		http.csrf().disable();
+//		
+////		http.authorizeRequests()
+////				.antMatchers(HttpMethod.OPTIONS, "/oauth/token").permitAll();
+//		
+//		http.authorizeRequests().anyRequest().permitAll();
 //
 //	}
 //
@@ -21,5 +29,7 @@
 //				"/swagger-ui.html", "/webjars/**","/swagger/**");
 //	}
 //	
-//	
-//}
+	
+}
+
+

@@ -62,4 +62,64 @@ public class User {
     this.password = password;
     this.name = name;
   }
+  public User() {
+	  super();
+  }
+@Override
+public String toString() {
+	return "User [userNo=" + userNo + ", email=" + email + ", password="
+			+ password + ", name=" + name + ", profileImage=" + profileImage
+			+ ", writeDate=" + writeDate + ", resume=" + resume + ", offer="
+			+ offer + "]";
+}
+public String getUserNo() {
+	return userNo;
+}
+public void setUserNo(String userNo) {
+	this.userNo = userNo;
+}
+public String getEmail() {
+	return email;
+}
+public void setEmail(String email) {
+	this.email = email;
+}
+public String getPassword() {
+	return password;
+}
+public void setPassword(String password) {
+	this.password = password;
+}
+public String getName() {
+	return name;
+}
+public void setName(String name) {
+	this.name = name;
+}
+public String getProfileImage() {
+	return profileImage;
+}
+public void setProfileImage(String profileImage) {
+	this.profileImage = profileImage;
+}
+public Date getWriteDate() {
+	return writeDate;
+}
+public void setWriteDate(Date writeDate) {
+	this.writeDate = writeDate;
+}
+public List<Resume> getResume() {
+	return resume;
+}
+public void setResume(List<Resume> resume) {
+	this.resume = resume;
+}
+public List<Offer> getOffer() {
+	return offer;
+}
+public void setOffer(List<Offer> offer) {
+	this.offer = offer;
+}
+  
+  
 }

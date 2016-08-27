@@ -1,5 +1,17 @@
 package org.ahea.blindinterview;
 
+
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
+
+import javax.servlet.Filter;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -60,23 +72,23 @@ public class ApiApplication extends SpringBootServletInitializer {
 //    }
 //	
 	
-	@ApiOperation(value = "헬로우 테스트", httpMethod = "POST", notes = "헬로우 테스트입니다")
-	@ApiResponses(value = {
-            @ApiResponse(code = 400, message = "Invalid input:..."),
-            @ApiResponse(code = 200, message = "Ok" )
-            })  
-	@ApiImplicitParams({
-        @ApiImplicitParam(name = "Authorization", value = "authorization header", required = true,
-                dataType = "string", paramType = "header", defaultValue = "bearer ")
-	})
-	@RequestMapping(value="/", method=RequestMethod.POST )
-	public String home() {
-		return "Blind Interview Server Running\n";
-	}
+//	@ApiOperation(value = "헬로우 테스트", httpMethod = "POST", notes = "헬로우 테스트입니다")
+//	@ApiResponses(value = {
+//            @ApiResponse(code = 400, message = "Invalid input:..."),
+//            @ApiResponse(code = 200, message = "Ok" )
+//            })  
+//	@ApiImplicitParams({
+//        @ApiImplicitParam(name = "Authorization", value = "authorization header", required = true,
+//                dataType = "string", paramType = "header", defaultValue = "bearer ")
+//	})
+//	@RequestMapping(value="/", method=RequestMethod.POST )
+//	public String home() {
+//		return "Blind Interview Server Running\n";
+//	}
 
 	
 	
-	@ApiOperation(value = "헬로우 테스트", httpMethod = "GET", notes = "헬로우 테스트입니다")
+	@ApiOperation(value = "헬로우 테스트", httpMethod = "POST", notes = "헬로우 테스트입니다")
 	@ApiResponses(value = {
             @ApiResponse(code = 400, message = "Invalid input:..."),
             @ApiResponse(code = 200, message = "Ok" )
@@ -86,8 +98,11 @@ public class ApiApplication extends SpringBootServletInitializer {
                 dataType = "string", paramType = "header", defaultValue = "bearer cbbb1a6e-8614-4a4d-a967-b0a42924e7ca")
 	})
 	@RequestMapping(value="/hello", method=RequestMethod.POST )
-	public String hello(@ApiParam(value = "xxx", required = true, defaultValue = "xxx") String value) {
+	public String hello(@ApiParam(value = "키값", required = true, defaultValue = "기본값") String value) {
 		return "Blind Interview Server Running\n";
 	}
 
+	
+	
+	
 }
