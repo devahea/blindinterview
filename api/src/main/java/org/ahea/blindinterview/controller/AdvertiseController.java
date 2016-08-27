@@ -11,32 +11,37 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
- 
- 
+
 @Controller
 @RequestMapping("/advertise")
 public class AdvertiseController {
 
-	private static final Logger logger = Logger.getLogger(AdvertiseController.class);
+	private static final Logger logger = Logger
+			.getLogger(AdvertiseController.class);
 
 	@Autowired
-	  AdvertiseRepository advertiseRepository;
+	AdvertiseRepository advertiseRepository;
 
-	@RequestMapping(value = "/{advertiseId}",method = RequestMethod.GET)
+	@RequestMapping(value = "/{advertiseId}", method = RequestMethod.GET)
 	public String view(@PathVariable String advertiseId, Model model) {
-		
+
 		logger.info("view called..");
-		
-		Advertise advertise = advertiseRepository.findOne(advertiseId);	
-		model.addAttribute("Advertise",advertise);
+
+		Advertise advertise = advertiseRepository.findOne(advertiseId);
+		model.addAttribute("Advertise", advertise);
 		return "advertise/view";
 	}
 
-
-	  @RequestMapping(method = RequestMethod.PUT)
-	  @ResponseBody
-	  public ResponseVO delete(String advertiseId, Model model) {
-	    advertiseRepository.delete(advertiseId);
-	    return ResponseVO.ok();
-	  }
+	@RequestMapping(method = RequestMethod.PUT)
+	@ResponseBody
+	public ResponseVO delete(String advertiseId, Model model) {
+		advertiseRepository.delete(advertiseId);
+		return ResponseVO.ok();
+	}
+	
+	@RequestMapping(value="create.do", method=RequestMethod.GET)
+	public String createView() {
+		return "advertise/create";
+	}
+	
 }
