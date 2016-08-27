@@ -1,6 +1,7 @@
 package org.ahea.blindinterview.controller;
 
 
+
 import org.ahea.blindinterview.model.resume.ResumeFile;
 import org.ahea.blindinterview.model.resume.ResumeFileRepository;
 import org.ahea.blindinterview.model.vo.ResponseVO;
@@ -22,18 +23,33 @@ public class ResumeFileController {
 	@Autowired
 	  ResumeFileRepository resumeFileRepository;
 
-	@RequestMapping(value = "/{resumeFileId}",method = RequestMethod.GET)
-	public String view(@PathVariable String resumeFileId, Model model) {
-		ResumeFile resumeFile = resumeFileRepository.findOne(resumeFileId);	
-		model.addAttribute("ResumeFile",resumeFile);
+	@RequestMapping(value = "/create", method = RequestMethod.POST)
+	public String create(ResumeFile resumeFile, Model model) {
+		resumeFileRepository.save(resumeFile);
+		model.addAttribute("resumeFile", resumeFile);
+		return "redirect:resumeFile/view?resumeFileId=" + resumeFile.getId();
+	}
+	
+	@RequestMapping(value = "/view", method = RequestMethod.GET)
+	public String view(String resumeFileId, Model model) {
+		logger.info("view called..");
+		ResumeFile resumeFile = resumeFileRepository.findOne(resumeFileId);
+		model.addAttribute("resumeFile", resumeFile);
 		return "resumeFile/view";
 	}
 
-
-	  @RequestMapping(method = RequestMethod.PUT)
-	  @ResponseBody
-	  public ResponseVO delete(String resumeFileId, Model model) {
-	    resumeFileRepository.delete(resumeFileId);
-	    return ResponseVO.ok();
-	  }
+	@RequestMapping(value = "/update", method = RequestMethod.POST)
+	public String update(ResumeFile resumeFile, Model model) {
+		ResumeFile updateresumeFile = resumeFileRepository.findOne(resumeFile.getId()); 
+		resumeFileRepository.save(updateresumeFile);		
+		model.addAttribute("resumeFile", resumeFile);
+		return "redirect:resumeFile/view?resumeFileId=" + resumeFile.getId();
+	}
+	
+	@RequestMapping(value = "/delete", method = RequestMethod.DELETE)
+	@ResponseBody
+	public ResponseVO delete(String resumeFileId, Model model) {
+		resumeFileRepository.delete(resumeFileId);
+		return ResponseVO.ok();
+	}
 }
