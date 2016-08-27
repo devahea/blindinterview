@@ -2,7 +2,6 @@ package org.ahea.blindinterview.controller;
 
 import org.ahea.blindinterview.model.offer.Offer;
 import org.ahea.blindinterview.model.offer.OfferRepository;
-import org.ahea.blindinterview.model.offer.OfferVO;
 import org.ahea.blindinterview.model.vo.ResponseVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -35,13 +34,12 @@ public class OfferController {
 		return ResponseVO.ok();
 	}
 
-//	@RequestMapping(value = "/update", method = RequestMethod.POST)
-//	public ResponseVO update(OfferVO offerVO, Model model) {
-//		Offer offer = offerRepository.findOne(offerVO.getOfferId()); //1
-//		offer.setOfferStatus(offerVO.getOfferStatus());				 //2
-//		offerRepository.save(offer);								 //3
-//		return ResponseVO.ok();
-//	}
+	@RequestMapping(value = "/update", method = RequestMethod.POST)
+	public ResponseVO update(Offer offer, Model model) {
+		Offer updateOffer = offerRepository.findOne(offer.getId()); 
+		offerRepository.save(updateOffer);								
+		return ResponseVO.ok();
+	}
 
 	@RequestMapping(value = "/{offerId}", method = RequestMethod.DELETE)
 	@ResponseBody

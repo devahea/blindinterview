@@ -2,6 +2,7 @@ package org.ahea.blindinterview.controller;
 
 import org.ahea.blindinterview.model.advertise.Advertise;
 import org.ahea.blindinterview.model.advertise.AdvertiseRepository;
+import org.ahea.blindinterview.model.corpteam.CorpTeam;
 import org.ahea.blindinterview.model.vo.ResponseVO;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,6 +39,15 @@ public class AdvertiseController {
 		advertiseRepository.delete(advertiseId);
 		return ResponseVO.ok();
 	}
+	
+//	@RequestMapping(value = "/update", method = RequestMethod.POST)
+//	public ResponseVO update(CorpTeam corpTeam, Model model) {
+//		CorpTeam updateCorpTeam = corpTeamRepository.findOne(corpTeam.getId()); 
+//		corpTeamRepository.save(updateCorpTeam);								
+//		return ResponseVO.ok();
+//	}
+	
+	
 	
 	@RequestMapping(value="create.do", method=RequestMethod.GET)
 	public String createView() {
