@@ -1,8 +1,10 @@
 package org.ahea.blindinterview.controller;
 
+
 import org.ahea.blindinterview.model.offer.Offer;
 import org.ahea.blindinterview.model.offer.OfferRepository;
 import org.ahea.blindinterview.model.vo.ResponseVO;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,33 +17,42 @@ import lombok.extern.apachecommons.CommonsLog;
 
 @Controller
 @RequestMapping("/offer")
-@CommonsLog
+
 public class OfferController {
+	
+	private static final Logger logger = Logger
+			.getLogger(OfferController.class);
 
 	@Autowired
 	OfferRepository offerRepository;
 
-	@RequestMapping(value = "/{offerId}", method = RequestMethod.GET)
-	public String view(@PathVariable String offerId, Model model) {
+	
+
+	@RequestMapping(value = "/create", method = RequestMethod.POST)
+	public String create(Offer offer, Model model) {
+		offerRepository.save(offer);
+		model.addAttribute("offer", offer);
+		return "redirect:offer/view?offerId=" + offer.getId();
+	}
+
+	@RequestMapping(value = "/view", method = RequestMethod.GET)
+	public String view(String offerId, Model model) {
+		logger.info("view called..");
 		Offer offer = offerRepository.findOne(offerId);
-		model.addAttribute("Offer", offer);
+		model.addAttribute("offer", offer);
 		return "offer/view";
 	}
 
-	@RequestMapping(value = "/create", method = RequestMethod.POST)
-	public ResponseVO create(Offer offer, Model model) {
-		offerRepository.save(offer);
-		return ResponseVO.ok();
-	}
-
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
-	public ResponseVO update(Offer offer, Model model) {
-		Offer updateOffer = offerRepository.findOne(offer.getId()); 
-		offerRepository.save(updateOffer);								
-		return ResponseVO.ok();
+	public String update(Offer offer, Model model) {
+		Offer updateoffer = offerRepository.findOne(offer.getId()); 
+		offerRepository.save(updateoffer);		
+		model.addAttribute("offer", offer);
+		return "redirect:offer/view?offerId=" + offer.getId();
 	}
+	
 
-	@RequestMapping(value = "/{offerId}", method = RequestMethod.DELETE)
+	@RequestMapping(value = "/delete", method = RequestMethod.DELETE)
 	@ResponseBody
 	public ResponseVO delete(String offerId, Model model) {
 		offerRepository.delete(offerId);

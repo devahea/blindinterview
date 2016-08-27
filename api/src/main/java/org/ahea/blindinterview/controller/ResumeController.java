@@ -1,8 +1,11 @@
 package org.ahea.blindinterview.controller;
 
+<<<<<<< HEAD
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
+=======
+>>>>>>> origin/final
 
 import org.ahea.blindinterview.model.resume.Resume;
 import org.ahea.blindinterview.model.resume.ResumeFile;
@@ -30,12 +33,7 @@ public class ResumeController {
 	@Autowired ResumeRepository resumeRepository;
 	@Autowired ResumeFileRepository resumeFileRepository;
 
-	@RequestMapping(value = "/{resumeId}",method = RequestMethod.GET)
-	public String view(@PathVariable String resumeId, Model model) {
-		Resume resume = resumeRepository.findOne(resumeId);	
-		model.addAttribute("Resume",resume);
-		return "resume/view";
-	}
+	
 
 	@RequestMapping(value = "/list",method = RequestMethod.GET)
 	public String list(Model model) {
@@ -84,9 +82,42 @@ public class ResumeController {
 	
 
 
+<<<<<<< HEAD
 	  @RequestMapping(value="delete",method = RequestMethod.POST)
 	  public String delete(String resumeId, Model model) {
 	    resumeRepository.delete(resumeId);
 	    return "redirect:list";
 	  }
+=======
+
+	@RequestMapping(value = "/create", method = RequestMethod.POST)
+	public String create(Resume resume, Model model) {
+		resumeRepository.save(resume);
+		model.addAttribute("resume", resume);
+		return "redirect:resume/view?resumeId=" + resume.getId();
+	}
+	
+	@RequestMapping(value = "/view", method = RequestMethod.GET)
+	public String view(String resumeId, Model model) {
+		logger.info("view called..");
+		Resume resume = resumeRepository.findOne(resumeId);
+		model.addAttribute("resume", resume);
+		return "resume/view";
+	}
+
+	@RequestMapping(value = "/update", method = RequestMethod.POST)
+	public String update(Resume resume, Model model) {
+		Resume updateresume = resumeRepository.findOne(resume.getId()); 
+		resumeRepository.save(updateresume);		
+		model.addAttribute("resume", resume);
+		return "redirect:resume/view?resumeId=" + resume.getId();
+	}
+	
+	@RequestMapping(value = "/delete", method = RequestMethod.DELETE)
+	@ResponseBody
+	public ResponseVO delete(String resumeId, Model model) {
+		resumeRepository.delete(resumeId);
+		return ResponseVO.ok();
+	}
+>>>>>>> origin/final
 }

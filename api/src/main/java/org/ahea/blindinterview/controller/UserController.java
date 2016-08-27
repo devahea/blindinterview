@@ -7,14 +7,18 @@ import javax.servlet.http.HttpSession;
 
 import io.swagger.annotations.ApiParam;
 
+
 import org.ahea.blindinterview.model.user.User;
 import org.ahea.blindinterview.model.user.UserRepository;
+import org.ahea.blindinterview.model.vo.ResponseVO;
 import org.ahea.blindinterview.util.FileWriter;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
@@ -67,5 +71,34 @@ public class UserController {
 	  return new ModelAndView("user/join");
   }
 
+  @RequestMapping(value = "/create", method = RequestMethod.POST)
+	public String create(User user, Model model) {
+		userRepository.save(user);
+		model.addAttribute("user", user);
+		return "redirect:user/view?userId=" + user.getUserNo();
+	}
+	
+	@RequestMapping(value = "/view", method = RequestMethod.GET)
+	public String view(String userId, Model model) {
+		logger.info("view called..");
+		User user = userRepository.findOne(userId);
+		model.addAttribute("user", user);
+		return "user/view";
+	}
+
+	@RequestMapping(value = "/update", method = RequestMethod.POST)
+	public String update(User user, Model model) {
+		User updateuser = userRepository.findOne(user.getUserNo()); 
+		userRepository.save(updateuser);		
+		model.addAttribute("user", user);
+		return "redirect:user/view?userId=" + user.getUserNo();
+	}
+	
+	@RequestMapping(value = "/delete", method = RequestMethod.DELETE)
+	@ResponseBody
+	public ResponseVO delete(String userId, Model model) {
+		userRepository.delete(userId);
+		return ResponseVO.ok();
+	}
 
 }
