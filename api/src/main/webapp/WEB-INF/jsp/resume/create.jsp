@@ -254,13 +254,13 @@
 						<div class="row">
 							<div class="col-xs-12">
 								<!-- PAGE CONTENT BEGINS -->
-								<form class="form-horizontal" role="form">
+								<form id="insertForm" enctype="multipart/form-data" action="${pageContext.request.contextPath}/resume/create" class="form-horizontal" role="form" method="post">
 									<!-- #section:elements.form -->
 									<div class="form-group">
 										<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Title </label>
 
 										<div class="col-sm-9">
-											<input type="text" id="form-field-1" placeholder="제목을 입력해주세요" class="col-xs-10 col-sm-5" />
+											<input type="text" id="form-field-1" placeholder="제목을 입력해주세요" class="col-xs-10 col-sm-5" name="title"/>
 										</div>
 									</div>
 
@@ -268,7 +268,7 @@
 										<label class="col-sm-3 control-label no-padding-right" for="form-field-1-1">Content</label>
 
 										<div class="col-sm-9">
-											<textarea rows="5" cols="20" placeholder="내용을 입력해주세요"  class="form-control"></textarea> 
+											<textarea rows="5" cols="20" placeholder="내용을 입력해주세요"  class="form-control" name="content"></textarea> 
 										</div>
 									</div>
 
@@ -281,7 +281,7 @@
 										<div class="col-sm-9">
 											<div class="form-group">
 												<div class="col-xs-12">
-													<input multiple="" type="file" id="id-input-file-3" />
+													<input multiple="" type="file" id="id-input-file-3" name="file"/>
 
 													<!-- /section:custom/file-input -->
 												</div>
@@ -295,7 +295,7 @@
 
 									<div class="clearfix form-actions">
 										<div class="col-md-offset-3 col-md-9">
-											<button class="btn btn-info" type="button">
+											<button class="btn btn-info" type="button" id="saveBtn">
 												<i class="ace-icon fa fa-check bigger-110"></i>
 												Save
 											</button>
@@ -421,6 +421,13 @@
 		
 		<script type="text/javascript">
 			jQuery(function($) {
+				
+				
+				$("#saveBtn").click(function(){
+					$("#insertForm").submit();
+				});
+				
+				
 				$('#id-disable-check').on('click', function() {
 					var inp = $('#form-input-readonly').get(0);
 					if(inp.hasAttribute('disabled')) {
@@ -434,12 +441,6 @@
 						inp.value="This text field is disabled!";
 					}
 				});
-			
-			
-			
-			
-			
-			
 			
 				
 				$('#id-input-file-1 , #id-input-file-2').ace_file_input({

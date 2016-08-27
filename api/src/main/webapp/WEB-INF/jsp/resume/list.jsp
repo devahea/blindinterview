@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -246,42 +247,28 @@
 
 								<div class="content-list">
 								
-									<div class="content-list-item">
+								
+									<c:forEach items="${list }" var="item">
 									
-										<img src="/api/dummy/dummy1.jpg" class="img-rounded" style="width:300px; float: left;">
-										
-										<div class="content-list-item-article" style="margin-left: 20px;  float: left;">
-										
-											<h2>포트폴리오1</h2>
+										<a href="/api/resume/<c:out value="${item.id }"/>">
+											<div class="content-list-item">
 											
-											<div class="content-list-item-article-content">
-												asfsdfasdfasdfasdf
-												asdfsadfdsa
+												<img src="/api/<c:out value="${item.resumeFile[0].filePath }"/>" class="img-rounded" style="width:300px; float: left;">
+												
+												<div class="content-list-item-article" style="margin-left: 20px;  float: left;">
+												
+													<h2><c:out value="${item.title }"/></h2>
+													
+													<div class="content-list-item-article-content">
+														<c:out value="${item.content }"/>
+														
+													</div>
+												</div>
 												
 											</div>
-										</div>
-										
-									</div>
-									
-									<hr style="clear: both;">
-									<div class="content-list-item">
-									
-										<img src="/api/dummy/dummy1.jpg" class="img-rounded" style="width:300px; float: left;">
-										
-										<div class="content-list-item-article" style="margin-left: 20px;  float: left;">
-										
-											<h2>포트폴리오1</h2>
-											
-											<div class="content-list-item-article-content">
-												asfsdfasdfasdfasdf
-												asdfsadfdsa
-												
-											</div>
-										</div>
-										
-									</div>
-									
-									<hr style="clear: both;">
+										</a>
+										<hr style="clear: both;">
+									</c:forEach>
 								</div>								
 							
 							</div>

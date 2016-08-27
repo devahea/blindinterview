@@ -73,7 +73,7 @@
 									</div>
 									<div class="form-group">
 										 <input
-											type="password" name="name" placeholder="Name을 입력하세요"
+											type="text" name="name" placeholder="Name을 입력하세요"
 											class="form-password form-control" id="form-password">
 									</div>
 								</div>

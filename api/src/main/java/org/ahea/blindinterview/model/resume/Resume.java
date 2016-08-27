@@ -1,30 +1,36 @@
 package org.ahea.blindinterview.model.resume;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+
 import org.ahea.blindinterview.config.ColumnSize;
 import org.ahea.blindinterview.model.corpteam.CorpTeam;
 import org.ahea.blindinterview.model.user.User;
+import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.GenericGenerator;
-
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
  
 @Entity
 @Table
 @Data
 @NoArgsConstructor
+@ToString(exclude={"user","corpTeam"})
 public class Resume {
   @Id
   @GeneratedValue(generator = "system-uuid")
@@ -52,4 +58,7 @@ public class Resume {
   @ManyToOne
   @JoinColumn(name = "team_id", insertable = false, updatable = false)
   private CorpTeam corpTeam;
+  
+  @OneToMany(mappedBy = "resumeNo", fetch = FetchType.LAZY)
+  private List<ResumeFile> resumeFile;
 }

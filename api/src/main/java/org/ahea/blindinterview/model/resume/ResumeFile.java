@@ -46,4 +46,7 @@ public class ResumeFile {
   @Column(name = "write_data")
   @Temporal(TemporalType.TIMESTAMP)
   private Date writeData;
+  
+  
+  
 }

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -243,22 +244,24 @@
 						
 						
 						<div>
-								<button type="button" class="btn btn-success">edit</button>
-								<button type="button" class="btn btn-link">delete</button>
+								<!-- <button type="button" class="btn btn-success">edit</button> -->
+								<button type="button" class="btn btn-link" id="deleteButton">delete</button>
+								<form action="/api/resume/delete" method="post" id="deleteForm">
+									<input type="hidden" name="resumeId" value="<c:out value="${Resume.id }"/>"/>
+								</form>
 							</div>
 						
 							<div class="main-content form-inline">
 
 							
-										<img src="/api/dummy/dummy1.jpg" class="img-rounded" style="width:300px; ">
+										<img src="/api/<c:out value="${Resume.resumeFile[0].filePath }"/>" class="img-rounded" style="width:300px; ">
 										
 										<div class="content-list-item-article" style="margin-left: 20px;  ">
 										
-											<h2>포트폴리오1</h2>
+											<h2><c:out value="${Resume.title }"/></h2>
 											
 											<div class="article-content">
-												asfsdfasdfasdfasdf
-												asdfsadfdsa
+												<c:out value="${Resume.content }"/>
 												
 											</div>
 										</div>
@@ -344,6 +347,15 @@
 		<script src="<%=request.getContextPath()%>/assets/js/src/ace.settings-skin.js"></script>
 		<script src="<%=request.getContextPath()%>/assets/js/src/ace.widget-on-reload.js"></script>
 		<script src="<%=request.getContextPath()%>/assets/js/src/ace.searchbox-autocomplete.js"></script>
+		
+		<script type="text/javascript">
+		
+			$(document).ready(function() {
+				$("#deleteButton").click(function(){
+					$("#deleteForm").submit();	
+				});
+			});
+		</script>
 		
 	</body>
 </html>
