@@ -1,11 +1,8 @@
 package org.ahea.blindinterview.controller;
 
-<<<<<<< HEAD
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
-=======
->>>>>>> origin/final
 
 import org.ahea.blindinterview.model.resume.Resume;
 import org.ahea.blindinterview.model.resume.ResumeFile;
@@ -40,13 +37,12 @@ public class ResumeController {
 		
 		model.addAttribute("list", resumeRepository.findAll());
 		
-		return "resume/list";
+		return "resume.list";
 	}
 	@RequestMapping(value = "/create",method = RequestMethod.GET)
 	public String createView() {
-		return "resume/create";
+		return "resume.create";
 	}
-	
 	
 	@RequestMapping(value = "/create",method = RequestMethod.POST)
 	public String create(Resume resume, @RequestParam(value = "file") MultipartFile file, HttpServletRequest request) {
@@ -76,19 +72,19 @@ public class ResumeController {
 		logger.info("resumeFile save - " + resumeFile);
 		
 		
-		return "redirect:list";
+		return "redirect:resume.list";
 	}
 	
 	
 
 
-<<<<<<< HEAD
-	  @RequestMapping(value="delete",method = RequestMethod.POST)
-	  public String delete(String resumeId, Model model) {
+
+	  @RequestMapping(value="/delete/{resumeId}",method = RequestMethod.POST)
+	  public String delete(@PathVariable  String resumeId, Model model) {
 	    resumeRepository.delete(resumeId);
-	    return "redirect:list";
+	    return "redirect:resume.list";
 	  }
-=======
+/*
 
 	@RequestMapping(value = "/create", method = RequestMethod.POST)
 	public String create(Resume resume, Model model) {
@@ -96,13 +92,13 @@ public class ResumeController {
 		model.addAttribute("resume", resume);
 		return "redirect:resume/view?resumeId=" + resume.getId();
 	}
-	
-	@RequestMapping(value = "/view", method = RequestMethod.GET)
-	public String view(String resumeId, Model model) {
+*/	
+	@RequestMapping(value = "/view/{resumeId}", method = RequestMethod.GET)
+	public String view(@PathVariable String resumeId, Model model) {
 		logger.info("view called..");
 		Resume resume = resumeRepository.findOne(resumeId);
 		model.addAttribute("resume", resume);
-		return "resume/view";
+		return "resume.view";
 	}
 
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
@@ -110,14 +106,8 @@ public class ResumeController {
 		Resume updateresume = resumeRepository.findOne(resume.getId()); 
 		resumeRepository.save(updateresume);		
 		model.addAttribute("resume", resume);
-		return "redirect:resume/view?resumeId=" + resume.getId();
+		return "redirect:resume.view?resumeId=" + resume.getId();
 	}
 	
-	@RequestMapping(value = "/delete", method = RequestMethod.DELETE)
-	@ResponseBody
-	public ResponseVO delete(String resumeId, Model model) {
-		resumeRepository.delete(resumeId);
-		return ResponseVO.ok();
-	}
->>>>>>> origin/final
+
 }

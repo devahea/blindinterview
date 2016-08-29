@@ -7,6 +7,9 @@ import org.springframework.web.servlet.config.annotation.DefaultServletHandlerCo
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
+import org.springframework.web.servlet.view.tiles3.TilesConfigurer;
+import org.springframework.web.servlet.view.tiles3.TilesView;
+import org.springframework.web.servlet.view.tiles3.TilesViewResolver;
 
 @Configuration
 @EnableWebMvc
@@ -18,6 +21,9 @@ public class WebConfiguration extends WebMvcConfigurerAdapter {
         configurer.enable();
     }
 		
+	
+	/*일반JSP*/
+/*	
 	@Bean
     public InternalResourceViewResolver viewResolver() {
         InternalResourceViewResolver resolver = new InternalResourceViewResolver();
@@ -25,6 +31,22 @@ public class WebConfiguration extends WebMvcConfigurerAdapter {
         resolver.setSuffix(".jsp");
         return resolver;
     }
+*/	
+	@Bean
+	public TilesConfigurer tilesConfigurer() {
+		final TilesConfigurer configurer = new TilesConfigurer();
+		configurer.setDefinitions(new String[] { "WEB-INF/tiles/tiles.xml" });
+		configurer.setCheckRefresh(true);
+		return configurer;
+	}
+	
+	@Bean
+	public TilesViewResolver tilesViewResolver() {
+		final TilesViewResolver resolver = new TilesViewResolver();
+		resolver.setViewClass(TilesView.class);
+		return resolver;
+	}
+	
 	
 	@Bean
 	public MultipartResolver multipartResolver() {
