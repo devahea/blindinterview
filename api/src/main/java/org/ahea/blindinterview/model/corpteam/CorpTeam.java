@@ -31,6 +31,9 @@ public class CorpTeam {
   @Column(name = "team_id", length = ColumnSize.ID)
   private String id;
 
+  @Column(name = "password")
+  private String password;
+  
   @Column(name = "team_name", length = ColumnSize.NAME)
   private String teamName;
 
