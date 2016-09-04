@@ -21,6 +21,8 @@ import org.ahea.blindinterview.config.ColumnSize;
 import org.ahea.blindinterview.model.corpteam.CorpTeam;
 import org.ahea.blindinterview.model.offer.Offer;
 import org.hibernate.annotations.GenericGenerator;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -55,10 +57,12 @@ public class Advertise{
   
   @Column(name = "start_date")
   @Temporal(TemporalType.TIMESTAMP)
+  @DateTimeFormat(pattern="yyyy-MM-dd'T'HH:mm")
   private Date startDate;
   
   @Column(name = "end_date")
   @Temporal(TemporalType.TIMESTAMP)
+  @DateTimeFormat(pattern="yyyy-MM-dd'T'HH:mm")
   private Date endDate;
   
   @Column(name = "write_date")
