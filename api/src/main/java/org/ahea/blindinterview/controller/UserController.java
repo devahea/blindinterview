@@ -71,11 +71,16 @@ public class UserController {
 	  return new ModelAndView("user.join");
   }
 
+  @RequestMapping(value = "/create", method = RequestMethod.GET)
+  public String createView() {
+      return "user.join";
+  }
+  
   @RequestMapping(value = "/create", method = RequestMethod.POST)
 	public String create(User user, Model model) {
 		userRepository.save(user);
 		model.addAttribute("user", user);
-		return "redirect:user/view?userId=" + user.getUserNo();
+		return "user.list";
 	}
 	
 	@RequestMapping(value = "/view", method = RequestMethod.GET)
