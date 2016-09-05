@@ -45,20 +45,7 @@
 							</div>
 						
 							<div class="main-content form-inline">
-
-							
-										<img src="/api/<c:out value="${resume.resumeFile[0].filePath }"/>" class="img-rounded" style="width:300px; ">
-										
-										<div class="content-list-item-article" style="margin-left: 20px;  ">
-										
-											<h2><c:out value="${resume.title }"/></h2>
-											
-											<div class="article-content">
-												<c:out value="${resume.content }"/>
-												
-											</div>
-										</div>
-							
+										<h2><c:out value="${corpteam}"/></h2>
 							</div>
 						
 						

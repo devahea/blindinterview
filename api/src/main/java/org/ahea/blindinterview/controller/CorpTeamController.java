@@ -18,54 +18,53 @@ import lombok.extern.apachecommons.CommonsLog;
 @CommonsLog
 public class CorpTeamController {
 
-	private static final Logger logger = Logger.getLogger(CorpTeamController.class);
+    private static final Logger logger = Logger.getLogger(CorpTeamController.class);
 
-	@Autowired
-	CorpTeamRepository corpTeamRepository;
+    @Autowired
+    CorpTeamRepository corpTeamRepository;
 
-	@RequestMapping(value = "/create", method = RequestMethod.GET)
-	public String createView() {
-		return "corp.create";
-	}
+    @RequestMapping(value = "/create", method = RequestMethod.GET)
+    public String createView() {
+        return "corp.create";
+    }
 
-	@RequestMapping(value = "/list", method = RequestMethod.GET)
-	public String list(Model model) {
-		Iterable<CorpTeam> corpTeams = corpTeamRepository.findAll();
-		for (CorpTeam corpTeam : corpTeams) {
-			log.debug(corpTeam.toString());
-		}
-		model.addAttribute("corpteams", corpTeamRepository.findAll());
-		return "corp.list";
-	}
+    @RequestMapping(value = "/list", method = RequestMethod.GET)
+    public String list(Model model) {
+        Iterable<CorpTeam> corpTeams = corpTeamRepository.findAll();
+        for (CorpTeam corpTeam : corpTeams) {
+            log.debug(corpTeam.toString());
+        }
+        model.addAttribute("corpteams", corpTeamRepository.findAll());
+        return "corp.list";
+    }
 
-	@RequestMapping(value = "/create", method = RequestMethod.POST)
-	public String create(CorpTeam corpteam, Model model) {
-		corpTeamRepository.save(corpteam);
-		model.addAttribute("corpteam", corpteam);
-		return "corp.list";
-	}
+    @RequestMapping(value = "/create", method = RequestMethod.POST)
+    public String create(CorpTeam corpteam, Model model) {
+        corpTeamRepository.save(corpteam);
+        return "redirect:list";
+    }
 
-	@RequestMapping(value = "/view", method = RequestMethod.GET)
-	public String view(String corpteamId, Model model) {
-		logger.info("view called..");
-		CorpTeam corpteam = corpTeamRepository.findOne(corpteamId);
-		model.addAttribute("corpteam", corpteam);
-		return "corpteam/view";
-	}
+    @RequestMapping(value = "/view", method = RequestMethod.GET)
+    public String view(String corpteamId, Model model) {
+        logger.info("view called..");
+        CorpTeam corpteam = corpTeamRepository.findOne(corpteamId);
+        model.addAttribute("corpteam", corpteam);
+        return "corp.view";
+    }
 
-	@RequestMapping(value = "/update", method = RequestMethod.POST)
-	public String update(CorpTeam corpteam, Model model) {
-		CorpTeam updatecorpteam = corpTeamRepository.findOne(corpteam.getId());
-		corpTeamRepository.save(updatecorpteam);
-		model.addAttribute("corpteam", corpteam);
-		return "redirect:corpteam/view?corpteamId=" + corpteam.getId();
-	}
+    @RequestMapping(value = "/update", method = RequestMethod.POST)
+    public String update(CorpTeam corpteam, Model model) {
+        CorpTeam updatecorpteam = corpTeamRepository.findOne(corpteam.getId());
+        corpTeamRepository.save(updatecorpteam);
+        model.addAttribute("corpteam", corpteam);
+        return "redirect:view?corpteamId=" + corpteam.getId();
+    }
 
-	@RequestMapping(value = "/delete", method = RequestMethod.DELETE)
-	@ResponseBody
-	public ResponseVO delete(String corpteamId, Model model) {
-		corpTeamRepository.delete(corpteamId);
-		return ResponseVO.ok();
-	}
+    @RequestMapping(value = "/delete", method = RequestMethod.DELETE)
+    @ResponseBody
+    public ResponseVO delete(String corpteamId, Model model) {
+        corpTeamRepository.delete(corpteamId);
+        return ResponseVO.ok();
+    }
 
 }

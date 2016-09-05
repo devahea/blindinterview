@@ -3,7 +3,6 @@ package org.ahea.blindinterview.model.questrequest;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -31,6 +30,9 @@ public class QuestRequest {
   @ManyToOne
   @JoinColumn(name = "user_no", insertable = false, updatable = false)
   private User user;
+  
+  @Column(name = "content")
+  private String content;
   
   @ManyToOne
   @JoinColumn(name = "corp_user_id", insertable = false, updatable = false)

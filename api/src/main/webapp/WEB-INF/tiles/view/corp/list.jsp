@@ -48,7 +48,7 @@
 											
 												<div class="content-list-item-article" style="margin-left: 20px;  float: left;">
 												
-													<h2><c:out value="${item.id }"/></h2>
+													<h2><a  href="${pageContext.request.contextPath}/corp/view?corpteamId=${item.id}"><c:out value="${item.id }"/></a></h2>
 													<h2><c:out value="${item.teamName }"/></h2>
 													<h2><c:out value="${item.teamSerialNo }"/></h2>
 													

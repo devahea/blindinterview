@@ -2,7 +2,7 @@ package org.ahea.blindinterview.controller;
 
 import javax.servlet.http.HttpSession;
 
-import org.ahea.blindinterview.model.advertise.AdvertiseRepository;
+import org.ahea.blindinterview.model.corpteam.CorpTeamRepository;
 import org.ahea.blindinterview.model.corpuser.CorpUser;
 import org.ahea.blindinterview.model.corpuser.CorpUserRepository;
 import org.ahea.blindinterview.model.vo.ResponseVO;
@@ -15,60 +15,70 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import lombok.extern.apachecommons.CommonsLog;
+
 @Controller
 @RequestMapping("/corpUser")
 public class CorpUserController {
 
-	  private static final Logger logger = Logger.getLogger(CorpUserController.class);
-	  
-	  @Autowired
-		CorpUserRepository corpUserRepository;
-	  
-	  @RequestMapping(method = RequestMethod.GET, value="join.do")
-	  public ModelAndView userJoinView() {
-		  return new ModelAndView("corp/join");
-	  }
+    private static final Logger logger = Logger
+            .getLogger(CorpUserController.class);
 
-	  
-	  @RequestMapping(method = RequestMethod.POST, value = "join")
-	  public ModelAndView join(CorpUser user, HttpSession session) {
+    @Autowired
+    CorpUserRepository corpUserRepository;
 
-	    logger.info("param user - " + user);
-	    
-	    session.setAttribute("user", user);
-	    
-	    return new ModelAndView("redirect:/home.do");
+    @Autowired
+    CorpTeamRepository corpTeamRepository;
+    
+    @RequestMapping(value = "/create", method = RequestMethod.GET)
+    public String createView() {
+        return "corpUser.create";
+    }
 
-	  }
-	  
-	  @RequestMapping(value = "/view", method = RequestMethod.GET)
-		public String view(String corpUserId, Model model) {
-			logger.info("view called..");
-			CorpUser corpUser = corpUserRepository.findOne(corpUserId);
-			model.addAttribute("corpUser", corpUser);
-			return "corpUser/view";
-		}
-	  
-	  @RequestMapping(value = "/create", method = RequestMethod.POST)
-		public String create(CorpUser corpUser, Model model) {
-			corpUserRepository.save(corpUser);
-			model.addAttribute("corpUser", corpUser);
-			return "redirect:corpUser/view?corpUserId=" + corpUser.getId();
-		}
-	
-	  
-	  @RequestMapping(value = "/update", method = RequestMethod.POST)
-		public String update(CorpUser corpUser, Model model) {
-			CorpUser updatecorpUser = corpUserRepository.findOne(corpUser.getId()); 
-			corpUserRepository.save(updatecorpUser);		
-			model.addAttribute("corpUser", corpUser);
-			return "redirect:corpUser/view?corpUserId=" + corpUser.getId();
-		}
+    @RequestMapping(value = "/create", method = RequestMethod.POST)
+    public String create(CorpUser corpUser, Model model) {
+        logger.debug(String.format("corpUser-->%s",corpUser.toString()));
+        corpUser.setCorpTeam(corpTeamRepository.findOne(corpUser.getCorpTeam().getId()));
+        corpUserRepository.save(corpUser);
+        return "redirect:list";
+    }
 
-		@RequestMapping(value = "/delete", method = RequestMethod.DELETE)
-		@ResponseBody
-		public ResponseVO delete(String corpUserId, Model model) {
-			corpUserRepository.delete(corpUserId);
-			return ResponseVO.ok();
-		}
+    @RequestMapping(method = RequestMethod.GET, value = "join.do")
+    public ModelAndView userJoinView() {
+        return new ModelAndView("corp/join");
+    }
+
+    @RequestMapping(method = RequestMethod.POST, value = "join")
+    public ModelAndView join(CorpUser user, HttpSession session) {
+
+        logger.info("param user - " + user);
+
+        session.setAttribute("user", user);
+
+        return new ModelAndView("redirect:/home.do");
+
+    }
+
+    @RequestMapping(value = "/view", method = RequestMethod.GET)
+    public String view(String corpUserId, Model model) {
+        logger.info("view called..");
+        CorpUser corpUser = corpUserRepository.findOne(corpUserId);
+        model.addAttribute("corpUser", corpUser);
+        return "corpUser.view";
+    }
+
+    @RequestMapping(value = "/update", method = RequestMethod.POST)
+    public String update(CorpUser corpUser, Model model) {
+        CorpUser updatecorpUser = corpUserRepository.findOne(corpUser.getId());
+        corpUserRepository.save(updatecorpUser);
+        model.addAttribute("corpUser", corpUser);
+        return "redirect:view?corpUserId=" + corpUser.getId();
+    }
+
+    @RequestMapping(value = "/delete", method = RequestMethod.DELETE)
+    @ResponseBody
+    public ResponseVO delete(String corpUserId, Model model) {
+        corpUserRepository.delete(corpUserId);
+        return ResponseVO.ok();
+    }
 }

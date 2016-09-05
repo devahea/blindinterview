@@ -31,7 +31,7 @@ public class AdvertiseController {
 	public String create(Advertise advertise, Model model) {
 		advertiseRepository.save(advertise);
 		model.addAttribute("Advertise", advertise);
-		return "redirect:advertise.view?advertiseId=" + advertise.getId();
+		return "advertise.list";
 	}
 	
 	@RequestMapping(value = "/list",method = RequestMethod.GET)
@@ -40,8 +40,8 @@ public class AdvertiseController {
 		return "advertise.list";
 	}
 	
-	@RequestMapping(value = "/{advertiseId}", method = RequestMethod.GET)
-	public String view(@PathVariable String advertiseId, Model model) {
+	@RequestMapping(value = "/view", method = RequestMethod.GET)
+	public String view(String advertiseId, Model model) {
 		logger.info("view called..");
 		Advertise advertise = advertiseRepository.findOne(advertiseId);
 		model.addAttribute("advertise", advertise);
@@ -56,9 +56,9 @@ public class AdvertiseController {
 		return "redirect:advertise.view?advertiseId=" + advertise.getId();
 	}
 	
-	@RequestMapping(value = "/delete/{advertiseId}", method = RequestMethod.DELETE)
+	@RequestMapping(value = "/delete", method = RequestMethod.DELETE)
 	@ResponseBody
-	public ResponseVO delete(@PathVariable String advertiseId, Model model) {
+	public ResponseVO delete(String advertiseId, Model model) {
 		advertiseRepository.delete(advertiseId);
 		return ResponseVO.ok();
 	}

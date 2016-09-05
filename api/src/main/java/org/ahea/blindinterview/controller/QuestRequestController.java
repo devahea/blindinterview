@@ -26,11 +26,16 @@ public class QuestRequestController {
 	@Autowired
 	QuestRequestRepository questRequestRepository;
 
+    @RequestMapping(value = "/create", method = RequestMethod.GET)
+    public String createView() {
+        return "questRequest.create";
+    }
+
 	@RequestMapping(value = "/create", method = RequestMethod.POST)
 	public String create(QuestRequest questRequest, Model model) {
 		questRequestRepository.save(questRequest);
 		model.addAttribute("questRequest", questRequest);
-		return "redirect:questRequest/view?questRequestId=" + questRequest.getId();
+		return "redirect:user.list";
 	}
 	
 	@RequestMapping(value = "/view", method = RequestMethod.GET)

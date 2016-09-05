@@ -66,7 +66,14 @@
 		<put-attribute name="body" value="/WEB-INF/tiles/view/advertise/view.jsp" />
 	</definition>
 	
-	
+	<definition name="questRequest.create" extends="layout.createBasic">
+		<put-attribute name="title" value="questRequest 작성" />
+		<put-attribute name="body" value="/WEB-INF/tiles/view/questRequest/create.jsp" />
+	</definition>
+	<definition name="corpUser.create" extends="layout.createBasic">
+		<put-attribute name="title" value="questRequest 작성" />
+		<put-attribute name="body" value="/WEB-INF/tiles/view/corpUser/create.jsp" />
+	</definition>
 	
 	
 	
