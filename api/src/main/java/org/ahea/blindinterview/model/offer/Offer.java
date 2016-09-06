@@ -31,12 +31,12 @@ public class Offer {
   @Column(name = "offer_status")
   private String offerStatus;
   
-  @ManyToOne
-  @JoinColumn(name = "advertise_no", insertable = false, updatable = false)
+  @ManyToOne(optional=false)
+  @JoinColumn(name = "advertise_no")
   private Advertise advertise;
 
-  @ManyToOne
-  @JoinColumn(name = "user_no", insertable = false, updatable = false)
+  @ManyToOne(optional=false)
+  @JoinColumn(name = "user_no")
   private User user;
 
 }

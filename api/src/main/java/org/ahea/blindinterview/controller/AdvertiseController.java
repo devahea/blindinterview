@@ -2,12 +2,13 @@ package org.ahea.blindinterview.controller;
 
 import org.ahea.blindinterview.model.advertise.Advertise;
 import org.ahea.blindinterview.model.advertise.AdvertiseRepository;
+import org.ahea.blindinterview.model.corpteam.CorpTeam;
+import org.ahea.blindinterview.model.corpteam.CorpTeamRepository;
 import org.ahea.blindinterview.model.vo.ResponseVO;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -22,16 +23,24 @@ public class AdvertiseController {
 	@Autowired
 	AdvertiseRepository advertiseRepository;
 	
+	@Autowired
+    CorpTeamRepository corpTeamRepository;
+	
 	@RequestMapping(value="/create", method=RequestMethod.GET)
-	public String createView() {
+	public String createView(String corpTeamId, Model model) {
+	    // TODO corpTeam id 받아서 채용공고에서 내려줘야함. 일단 하드코딩
+//	     	    corpTeamId = "asd";
+	    CorpTeam corpTeam = corpTeamRepository.findOne(corpTeamId);
+	    model.addAttribute("corpTeam", corpTeam);
 		return "advertise.create";
 	}
 
 	@RequestMapping(value = "/create", method = RequestMethod.POST)
 	public String create(Advertise advertise, Model model) {
+	    advertise.setCorpTeam(corpTeamRepository.findOne(advertise.getCorpTeam().getId()));
 		advertiseRepository.save(advertise);
 		model.addAttribute("Advertise", advertise);
-		return "advertise.list";
+		return "redirect:list";
 	}
 	
 	@RequestMapping(value = "/list",method = RequestMethod.GET)

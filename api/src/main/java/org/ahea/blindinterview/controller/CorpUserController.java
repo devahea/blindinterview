@@ -15,8 +15,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import lombok.extern.apachecommons.CommonsLog;
-
 @Controller
 @RequestMapping("/corpUser")
 public class CorpUserController {
@@ -37,10 +35,14 @@ public class CorpUserController {
 
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     public String create(CorpUser corpUser, Model model) {
-        logger.debug(String.format("corpUser-->%s",corpUser.toString()));
         corpUser.setCorpTeam(corpTeamRepository.findOne(corpUser.getCorpTeam().getId()));
         corpUserRepository.save(corpUser);
         return "redirect:list";
+    }
+    
+    @RequestMapping(value = "/list",method = RequestMethod.GET)
+    public String list(Model model) {
+        return "advertise.list";
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "join.do")

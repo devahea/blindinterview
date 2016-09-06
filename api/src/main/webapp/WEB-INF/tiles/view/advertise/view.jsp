@@ -52,7 +52,7 @@
 								${advertise.content}
 								</div>
 							
-								<button type="submit" class="btn" id="offer_btn">지원하기</button>
+								<a href="/offer/create?advertiseId=${advertise.id}"/><button type="submit" class="btn" id="offer_btn">지원하기</button>
 							
 							</div>
 						

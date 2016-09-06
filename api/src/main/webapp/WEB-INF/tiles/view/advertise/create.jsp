@@ -42,8 +42,11 @@
 									<!-- #section:elements.form -->
 									<div class="form-group">
 										<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Title </label>
+										
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> ${corpTeam.id} </label>
 
 										<div class="col-sm-9">
+											<input type="hidden" name="corpTeam.id" value="${corpTeam.id}"/>
 											<input type="text" id="form-field-1" name="title" placeholder="제목을 입력해주세요" class="col-xs-10 col-sm-5" />
 										</div>
 									</div>

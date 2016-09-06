@@ -42,7 +42,7 @@ public class CorpUser {
   private Date writeData;
   
   @ManyToOne
-  @JoinColumn(name = "corp_team_id", insertable = false, updatable = false)
+  @JoinColumn(name = "corp_team_id")
   private CorpTeam corpTeam;
 
 }

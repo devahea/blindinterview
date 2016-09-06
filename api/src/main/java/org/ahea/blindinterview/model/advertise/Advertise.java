@@ -49,7 +49,7 @@ public class Advertise{
   private String content;
 
   @Column(name = "member")
-  private int member;
+  private Integer member;
   
   
   @Column(name = "date_type", length = ColumnSize.DATE_TYPE)
@@ -75,6 +75,6 @@ public class Advertise{
   private List<Offer> offer = new ArrayList<>();
   
   @ManyToOne
-  @JoinColumn(name = "team_id", insertable = false, updatable = false)
-  private CorpTeam CorpTeam;
+  @JoinColumn(name = "team_id")
+  private CorpTeam corpTeam;
 }
