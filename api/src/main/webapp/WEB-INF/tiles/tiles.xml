@@ -20,7 +20,6 @@
 		<put-attribute name="footer" value="/WEB-INF/tiles/view//footer.jsp" />
 	</definition>
 	
-	
 	<!-- Pages -->	
 	<definition name="resume.list" extends="layout.basic">
 		<put-attribute name="title" value="resume 목록" />
@@ -75,7 +74,7 @@
 		<put-attribute name="body" value="/WEB-INF/tiles/view/corpUser/create.jsp" />
 	</definition>
 	
-	
-	
+	<definition name="login" template="/WEB-INF/jsp/login.jsp" />
+	<definition name="home/home" template="/WEB-INF/jsp/home/home.jsp" />
 	
 </tiles-definitions>
