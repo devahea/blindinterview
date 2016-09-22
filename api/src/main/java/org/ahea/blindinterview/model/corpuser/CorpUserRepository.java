@@ -5,5 +5,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface CorpUserRepository extends CrudRepository<CorpUser, String>{
+	
+	public CorpUser findByEmailAndPassword(String email, String password);
 
 }

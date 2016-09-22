@@ -12,6 +12,8 @@ import javax.persistence.Table;
 
 import org.ahea.blindinterview.config.ColumnSize;
 import org.ahea.blindinterview.model.corpteam.CorpTeam;
+import org.ahea.blindinterview.model.vo.GenericUser;
+import org.ahea.blindinterview.security.LoginType;
 import org.hibernate.annotations.GenericGenerator;
 
 import lombok.Data;
@@ -21,8 +23,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table
 @Data
-@NoArgsConstructor
-public class CorpUser {
+public class CorpUser extends GenericUser{
   @Id
   @GeneratedValue(generator = "system-uuid")
   @GenericGenerator(name = "system-uuid", strategy = "uuid")
@@ -44,5 +45,10 @@ public class CorpUser {
   @ManyToOne
   @JoinColumn(name = "corp_team_id")
   private CorpTeam corpTeam;
+  
+  public CorpUser(){
+	  super();
+	  super.setLoginType(LoginType.COMPANY);
+  }
 
 }

@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 
 import org.ahea.blindinterview.model.user.User;
 import org.ahea.blindinterview.model.user.UserRepository;
+import org.ahea.blindinterview.model.corpuser.CorpUserRepository;
 import org.ahea.blindinterview.model.vo.ResponseVO;
 import org.ahea.blindinterview.security.LoginActor;
 import org.ahea.blindinterview.util.FileWriter;
@@ -30,6 +31,9 @@ public class UserController {
 
   @Autowired
   UserRepository userRepository;
+  
+  @Autowired
+  CorpUserRepository corpUserRepository;
 
 
 
@@ -38,10 +42,21 @@ public class UserController {
 
 	  logger.info("called...");
 	  
+	  //code smell
+	  
 	  try{
+		  
+		  //일반회원 로그인 시도
 		  LoginActor.newInstance().loginProcess(userRepository.findByEmailAndPassword(email, password));
-	  } catch(Exception e) {
-		  return "redirect:/login.do";
+	  } catch(Exception userLoginException) {
+		  
+		  //기업회원 로그인시도
+		  try{
+			  LoginActor.newInstance().loginProcess(corpUserRepository.findByEmailAndPassword(email, password));
+		  } catch(Exception corpLoginException) {
+			  return "redirect:/login.do";  
+		  }
+		  
 	  }
 	  
 	  return "redirect:/home.do";

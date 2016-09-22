@@ -20,7 +20,7 @@ import org.hibernate.annotations.GenericGenerator;
 @Entity
 @Table
 @Data
-public class Offer extends GenericUser {
+public class Offer  {
 	@Id
 	@GeneratedValue(generator = "system-uuid")
 	@GenericGenerator(name = "system-uuid", strategy = "uuid")
@@ -37,10 +37,5 @@ public class Offer extends GenericUser {
 	@ManyToOne(optional = false)
 	@JoinColumn(name = "user_no")
 	private User user;
-
-	public Offer() {
-		super();
-		super.setLoginType(LoginType.COMPANY);
-	}
 
 }

@@ -115,7 +115,7 @@
 			
 			$("#signin_offer_btn").click(function(){
 				
-				location.href="corp/join.do";
+				location.href="corpUser/create";
 			});
 			
 		});

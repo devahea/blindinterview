@@ -22,6 +22,7 @@
 	
 	<!-- join case 예외처리 -->
 	<definition name="user/join"  template="/WEB-INF/jsp/user/join.jsp" />
+	<definition name="corpUser/create"  template="/WEB-INF/tiles/view/corpUser/create.jsp" />
 	<definition name="login" template="/WEB-INF/jsp/login.jsp" />
 	<definition name="home/home" template="/WEB-INF/jsp/home/home.jsp" />
 	

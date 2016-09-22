@@ -30,8 +30,9 @@ public class CorpUserController {
     
     @RequestMapping(value = "/create", method = RequestMethod.GET)
     public String createView() {
-        return "corpUser.create";
+        return "corpUser/create";
     }
+    
 
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     public String create(CorpUser corpUser, Model model) {

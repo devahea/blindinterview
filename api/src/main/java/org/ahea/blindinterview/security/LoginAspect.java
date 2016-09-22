@@ -1,17 +1,11 @@
 package org.ahea.blindinterview.security;
 
-import javax.servlet.http.HttpServletRequest;
-
-import org.ahea.blindinterview.util.TilesTitle;
-import org.ahea.blindinterview.util.TilesTitleAop;
 import org.apache.log4j.Logger;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
-import org.springframework.web.context.request.RequestContextHolder;
-import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 @Aspect
