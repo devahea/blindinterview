@@ -68,7 +68,7 @@ public class UserController {
   
   @RequestMapping(method = RequestMethod.GET, value="join.do")
   public ModelAndView userJoinView() {
-	  return new ModelAndView("user.join");
+	  return new ModelAndView("user/join");
   }
 
   @RequestMapping(value = "/create", method = RequestMethod.GET)

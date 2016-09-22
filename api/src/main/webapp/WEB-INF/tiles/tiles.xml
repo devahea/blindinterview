@@ -20,19 +20,20 @@
 		<put-attribute name="footer" value="/WEB-INF/tiles/view//footer.jsp" />
 	</definition>
 	
+	<!-- join case 예외처리 -->
+	<definition name="user/join"  template="/WEB-INF/jsp/user/join.jsp" />
+	<definition name="login" template="/WEB-INF/jsp/login.jsp" />
+	<definition name="home/home" template="/WEB-INF/jsp/home/home.jsp" />
 	
 	<definition name="*.create" extends="layout.createBasic">
-		<put-attribute name="title" value="questRequest 작성" />
 		<put-attribute name="body" value="/WEB-INF/tiles/view/{1}/create.jsp" />
 	</definition>
 	<definition name="*.*" extends="layout.basic">
-		<put-attribute name="title" value="questRequest 작성" />
 		<put-attribute name="body" value="/WEB-INF/tiles/view/{1}/{2}.jsp" />
 	</definition>
 	
 	
 	
-	<definition name="login" template="/WEB-INF/jsp/login.jsp" />
-	<definition name="home/home" template="/WEB-INF/jsp/home/home.jsp" />
+	
 	
 </tiles-definitions>
