@@ -64,20 +64,23 @@
 							</div>
 						</div>
 						<div class="form-bottom">
-							<!-- <form role="form" action="" method="post" class="login-form"> -->
+							 <form role="form" action="/api/user/login" method="post" class="login-form">
 								<div class="form-group">
 									<label class="sr-only" for="form-username">Username</label> <input
-										type="text" name="form-username" placeholder="Email..."
+										type="text" name="email" placeholder="Email..."
 										class="form-username form-control" id="form-username">
 								</div>
 								<div class="form-group">
 									<label class="sr-only" for="form-password">Password</label> <input
-										type="password" name="form-password" placeholder="Password..."
+										type="password" name="password" placeholder="Password..."
 										class="form-password form-control" id="form-password">
 								</div>
-								<button type="submit" class="btn" id="signin_user_btn">Sign in User</button>
-								<button type="submit" class="btn" id="signin_offer_btn">Sign in Offer</button>
-							<!-- </form> -->
+								<button type="submit" class="btn" >Login</button>
+								
+							 </form>
+							 <br/> 
+							 <button type="button" class="btn" id="signin_user_btn">Sign in User</button>
+								<button type="button" class="btn" id="signin_offer_btn">Sign in Offer</button>
 						</div>
 					</div>
 				</div>

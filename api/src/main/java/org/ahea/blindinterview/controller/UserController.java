@@ -5,26 +5,24 @@ import java.util.UUID;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import io.swagger.annotations.ApiParam;
-
-
 import org.ahea.blindinterview.model.user.User;
 import org.ahea.blindinterview.model.user.UserRepository;
 import org.ahea.blindinterview.model.vo.ResponseVO;
+import org.ahea.blindinterview.security.LoginActor;
 import org.ahea.blindinterview.util.FileWriter;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 
-@RestController
+@Controller
 @RequestMapping("/user")
 public class UserController {
  
@@ -36,10 +34,17 @@ public class UserController {
 
 
   @RequestMapping(method = RequestMethod.POST, value = "login")
-  public User login(@ApiParam(value = "email", required = true) String email,
-      @ApiParam(value = "password", required = true) String password) throws Exception {
+  public String login(String email, String password) throws Exception {
 
-    return userRepository.findByEmailAndPassword(email, password);
+	  logger.info("called...");
+	  
+	  try{
+		  LoginActor.newInstance().loginProcess(userRepository.findByEmailAndPassword(email, password));
+	  } catch(Exception e) {
+		  return "redirect:/login.do";
+	  }
+	  
+	  return "redirect:/home.do";
 
   }
 

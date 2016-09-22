@@ -17,7 +17,10 @@ import javax.persistence.TemporalType;
 import org.ahea.blindinterview.config.ColumnSize;
 import org.ahea.blindinterview.model.offer.Offer;
 import org.ahea.blindinterview.model.resume.Resume;
+import org.ahea.blindinterview.model.vo.GenericUser;
+import org.ahea.blindinterview.security.LoginType;
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.usertype.UserType;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -26,7 +29,7 @@ import lombok.NoArgsConstructor;
 @Table
 @Data
 @NoArgsConstructor
-public class User {
+public class User extends GenericUser {
  
   @Id
   @GeneratedValue(generator = "system-uuid")
@@ -61,5 +64,6 @@ public class User {
     this.email = email;
     this.password = password;
     this.name = name;
+    super.setLoginType(LoginType.USER);
   }
 }
