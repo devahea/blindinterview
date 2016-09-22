@@ -9,6 +9,7 @@ import org.ahea.blindinterview.model.resume.ResumeFile;
 import org.ahea.blindinterview.model.resume.ResumeFileRepository;
 import org.ahea.blindinterview.model.resume.ResumeRepository;
 import org.ahea.blindinterview.util.FileWriter;
+import org.ahea.blindinterview.util.TilesTitle;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -31,6 +32,8 @@ public class ResumeController {
     @Autowired
     ResumeFileRepository resumeFileRepository;
 
+    
+    @TilesTitle("resume 목록")
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public String list(Model model) {
         model.addAttribute("list", resumeRepository.findAll());

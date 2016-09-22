@@ -20,59 +20,17 @@
 		<put-attribute name="footer" value="/WEB-INF/tiles/view//footer.jsp" />
 	</definition>
 	
-	<!-- Pages -->	
-	<definition name="resume.list" extends="layout.basic">
-		<put-attribute name="title" value="resume 목록" />
-		<put-attribute name="body" value="/WEB-INF/tiles/view/resume/list.jsp" />
-	</definition>
-	<definition name="resume.view" extends="layout.basic">
-		<put-attribute name="title" value="resume 상세보기" />
-		<put-attribute name="body" value="/WEB-INF/tiles/view/resume/view.jsp" />
-	</definition>
-	<definition name="resume.create" extends="layout.basic">
-		<put-attribute name="title" value="resume 작성" />
-		<put-attribute name="body" value="/WEB-INF/tiles/view/resume/create.jsp" />
-	</definition>
 	
-	<definition name="corp.list" extends="layout.basic">
-		<put-attribute name="title" value="corp 목록" />
-		<put-attribute name="body" value="/WEB-INF/tiles/view/corp/list.jsp" />
-	</definition>
-	<definition name="corp.view" extends="layout.basic">
-		<put-attribute name="title" value="corp 상세보기" />
-		<put-attribute name="body" value="/WEB-INF/tiles/view/corp/view.jsp" />
-	</definition>
-	<definition name="corp.create" extends="layout.basic">
-		<put-attribute name="title" value="corp 작성" />
-		<put-attribute name="body" value="/WEB-INF/tiles/view/corp/create.jsp" />
-	</definition>
-	
-	<definition name="user.join" extends="layout.basic">
-		<put-attribute name="title" value="user join" />
-		<put-attribute name="body" value="/WEB-INF/tiles/view/user/join.jsp" />
-	</definition>
-	
-	<definition name="advertise.list" extends="layout.basic">
-		<put-attribute name="title" value="advertise 목록" />
-		<put-attribute name="body" value="/WEB-INF/tiles/view/advertise/list.jsp" />
-	</definition>
-	<definition name="advertise.create" extends="layout.createBasic">
-		<put-attribute name="title" value="advertise 작성" />
-		<put-attribute name="body" value="/WEB-INF/tiles/view/advertise/create.jsp" />
-	</definition>
-	<definition name="advertise.view" extends="layout.basic">
-		<put-attribute name="title" value="advertise 보기" />
-		<put-attribute name="body" value="/WEB-INF/tiles/view/advertise/view.jsp" />
-	</definition>
-	
-	<definition name="questRequest.create" extends="layout.createBasic">
+	<definition name="*.create" extends="layout.createBasic">
 		<put-attribute name="title" value="questRequest 작성" />
-		<put-attribute name="body" value="/WEB-INF/tiles/view/questRequest/create.jsp" />
+		<put-attribute name="body" value="/WEB-INF/tiles/view/{1}/create.jsp" />
 	</definition>
-	<definition name="corpUser.create" extends="layout.createBasic">
+	<definition name="*.*" extends="layout.basic">
 		<put-attribute name="title" value="questRequest 작성" />
-		<put-attribute name="body" value="/WEB-INF/tiles/view/corpUser/create.jsp" />
+		<put-attribute name="body" value="/WEB-INF/tiles/view/{1}/{2}.jsp" />
 	</definition>
+	
+	
 	
 	<definition name="login" template="/WEB-INF/jsp/login.jsp" />
 	<definition name="home/home" template="/WEB-INF/jsp/home/home.jsp" />
