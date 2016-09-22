@@ -54,15 +54,11 @@
 
 							<div class="content-list-item-article"
 								style="margin-left: 20px; float: left;">
-								<a href="/api/offer/create?advertiseId=${item.id}>${item}해1당기업에
-									지원하기${item.id}</a>
-								<h2>
-									<c:out value="${item.title }" />
-								</h2>
-
+								
+								<a href="/api/offer/create?advertiseId=${item.id}">${item}해1당기업에 지원하기${item.id}</a>
+								<h2> <c:out value="${item.title }" /> </h2>
 								<div class="content-list-item-article-content">
 									<c:out value="${item.content }" />
-
 								</div>
 							</div>
 
